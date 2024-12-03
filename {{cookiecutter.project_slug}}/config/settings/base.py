@@ -21,11 +21,12 @@ APPS_DIR = BASE_DIR / "apps"
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = "{{ cookiecutter.secret_key|default('django-insecure-key') }}"
+
+DEBUG = {{ cookiecutter.debug|default(False) }}
 
 
 # Application definition
-
 LOCAL_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.api.apps.ApiConfig',

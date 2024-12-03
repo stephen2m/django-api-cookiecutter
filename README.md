@@ -1,4 +1,11 @@
+# {{ cookiecutter.project_name }}
+
 This is a framework for building production-ready Django API-only projects using Django Rest Framework using [Cookiecutter](https://github.com/cookiecutter/cookiecutter).
+
+## Features
+- Built with Django Rest Framework
+- API-first design
+- Easily customizable with cookiecutter
 
 ```
 project-root/                            # Root template directory
