@@ -1,0 +1,25 @@
+{
+  "project_name": "My Django API",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "description": "A Django REST API project",
+  "author_name": "Your Name",
+  "author_email": "your.email@example.com",
+  "domain_name": "example.com",
+  "version": "0.1.0",
+  "python_version": "3.11",
+  "use_celery": "y",
+  "use_sentry": "n",
+  "use_docker": "y",
+  "cloud_provider": ["aws", "gcp", "azure", "none"],
+  "database": ["postgres", "mysql"],
+  "use_async": "n",
+  "use_redis": "y",
+  "use_email": "n",
+  "open_source_license": [
+      "MIT",
+      "BSD",
+      "GPLv3",
+      "Apache Software License 2.0",
+      "Not open source"
+  ]
+}
