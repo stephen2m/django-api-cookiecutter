@@ -13,7 +13,10 @@
   "use_async": "n",
   "use_redis": "y",
   "use_email": "n",
+  "use_black": "y",
+  "use_precommit": "y",  
   "cloud_provider": ["aws", "gcp", "azure", "none"],
+  "ci_provider": ["None", "GitHub Actions", "GitLab CI", "CircleCI"],
   "auth_method": ["jwt", "session", "token"],
   "database": ["postgres", "mysql"],
   "open_source_license": [
