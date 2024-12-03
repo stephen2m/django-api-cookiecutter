@@ -1,5 +1,6 @@
 from .base import *  # noqa
 from .components.database import *  # noqa
+from .components.security import *  # noqa
 
 # Debug settings
 DEBUG = False

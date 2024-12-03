@@ -44,6 +44,7 @@ project-root/                            # Root template directory
 │   │   │   ├── __init__.py
 │   │   │   ├── apps.py
 │   │   │   ├── exceptions.py
+│   │   │   ├── mixins.py
 │   │   │   ├── permissions.py
 │   │   │   │
 │   │   │   ├── models/               # Base models

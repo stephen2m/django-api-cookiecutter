@@ -13,16 +13,33 @@ from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="{{ cookiecutter.project_name }} API",
+      default_version='v1',
+      description="{{ cookiecutter.description }}",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="{{ cookiecutter.author_email }}"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+)
+
 urlpatterns = [
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
+
     # User management
     path("users/", include("{{ cookiecutter.project_slug }}.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
 
     # API base url
     path("api/", include("config.api_router")),
-    # DRF auth token
+
+    # DRF
     path("api/auth-token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
@@ -30,6 +47,10 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+
+    # Swagger
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0)),
 
     # custom url includes go here
     # Media files
