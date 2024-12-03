@@ -1,29 +1,18 @@
 {
   "project_name": "My Django API",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_slug": "my_django_api",
   "description": "A Django REST API project",
   "author_name": "Your Name",
   "author_email": "your.email@example.com",
   "domain_name": "example.com",
   "version": "0.1.0",
   "python_version": "3.12",
-  "use_celery": "y",
-  "use_sentry": "n",
-  "use_docker": "y",
-  "use_async": "n",
-  "use_redis": "y",
-  "use_email": "n",
-  "use_black": "y",
-  "use_precommit": "y",  
-  "cloud_provider": ["aws", "gcp", "azure", "none"],
-  "ci_provider": ["None", "GitHub Actions", "GitLab CI", "CircleCI"],
-  "auth_method": ["jwt", "session", "token"],
-  "database": ["postgres", "mysql"],
-  "open_source_license": [
-      "MIT",
-      "BSD",
-      "GPLv3",
-      "Apache Software License 2.0",
-      "Not open source"
-  ]
+  "use_celery": ["n", "y"],
+  "use_sentry": ["n", "y"],
+  "use_docker": ["n", "y"],
+  "use_async": ["n", "y"],
+  "use_redis": ["n", "y"],
+  "use_email": ["n", "y"],
+  "auth_method": ["token", "session", "jwt"],
+  "database": ["postgresql", "mysql"]
 }

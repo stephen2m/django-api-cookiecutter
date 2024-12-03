@@ -2,20 +2,25 @@
 name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.description }}"
-authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.email }}>"]
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.1.3"
 djangorestframework = "^3.15.2"
 python-dotenv = "^1.0.1"
+{% if cookiecutter.database == "postgresql" %}
 psycopg = "^3.2.3"
-{%- if cookiecutter.use_redis == "y" %}
+{% endif %}
+{% if cookiecutter.database == "mysql" %}
+mysqlclient = "^2.2.6"
+{% endif %}
+{% if cookiecutter.use_redis == "y" %}
 redis = "^5.2.0"
-{%- endif %}
-{%- if cookiecutter.use_celery == "y" %}
+{% endif %}
+{% if cookiecutter.use_celery == "y" %}
 celery = "^5.4.0"
-{%- endif %}
+{% endif %}
 drf-spectacular = "^0.28.0"
 dj-database-url = "^2.3.0"
 

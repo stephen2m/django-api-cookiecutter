@@ -78,9 +78,6 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
@@ -88,6 +85,20 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
 }
+
+{% if cookiecutter.auth_method == "jwt" %}
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+)
+{% elif cookiecutter.auth_method == "session" %}
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
+    'rest_framework.authentication.SessionAuthentication',
+)
+{% elif cookiecutter.auth_method == "token" %}
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
+    'rest_framework.authentication.TokenAuthentication',
+)
+{% endif %}
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -134,3 +145,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery configuration
+{% if cookiecutter.use_celery == "y" %}
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+{% endif %}
+
+# Sentry configuration
+{% if cookiecutter.use_sentry == "y" %}
+SENTRY_DSN = os.getenv('SENTRY_DSN', None)
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+sentry_sdk.init(SENTRY_DSN, integrations=DjangoIntegration())
+{% endif %}
